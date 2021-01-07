@@ -1,0 +1,100 @@
+﻿@model E_Books.Models.Users
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+    <style>
+        #login-div{
+            position:absolute;
+            left:40%;
+            top: 30%;
+            border: 2px solid #b200ff;
+            padding: 100px 10px;
+        }
+        #login-text {
+            text-decoration:inherit;
+        }
+        #validation-message{
+            text-emphasis-color: red;
+            color:red;
+        }
+        #wrong-data{
+            color:red;
+            text-decoration:solid;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="login-div">
+        @using (Html.BeginForm("Authorize", "Login", FormMethod.Post))
+        {
+            <table>
+                <tr>
+                    <td></td>
+                    <td id="login-text">LOGIN FORM  <br /> <br /> <br /> </td>
+
+                </tr>
+
+
+                <tr>
+                    <td>
+                        @Html.LabelFor(model => model.Username)
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.Username)
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td id="validation-message">@Html.ValidationMessageFor(model => model.Username)</td>
+                </tr>
+
+
+
+
+                <tr>
+                    <td>
+                        @Html.LabelFor(model => model.Password)
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.Password)
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td id="validation-message"> @Html.ValidationMessageFor(model => model.Password)</td>
+                </tr>
+
+
+                <tr>
+                    <td colspan="2">
+                        <label id="wrong-data" class="field-validation-error">@Html.DisplayFor(model => model.LoginErrorMessage)</label>
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td></td>
+                    <td>
+                        <br />
+                        <input type="submit" name="name" value="Login" />
+                    </td>
+                </tr>
+            </table>
+        }
+
+        <div>
+            @Html.ActionLink("Register", "Register", "Register")
+        </div>
+    </div>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+</body>
+</html>
